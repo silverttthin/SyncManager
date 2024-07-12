@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spotify Now Playing</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      width: 200px;
+    }
+    #content {
+      display: none;
+    }
+    #loading {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h2>Now Playing</h2>
+  <div id="loading">Loading...</div>
+  <div id="content">
+    <p><strong>Song:</strong> <span id="song"></span></p>
+    <p><strong>Artist:</strong> <span id="artist"></span></p>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
