@@ -1,17 +1,14 @@
 {
-    "manifest_version": 3,
-    "name": "Spotify Now Playing",
-    "version": "1.0",
-    "description": "Displays the currently playing song and artist on Spotify.",
-    "permissions": [
-      "activeTab",
-      "scripting"
-    ],
-    "background": {
-      "service_worker": "background.js"
-    },
-    "action": {
-      "default_popup": "popup.html"
+  "manifest_version": 3,
+  "name": "YouTube Music Current Time Tracker",
+  "version": "1.0",
+  "description": "Track the current time of the song playing on YouTube Music and display it in a floating window",
+  "permissions": ["activeTab"],
+  "content_scripts": [
+    {
+      "matches": ["*://music.youtube.com/watch*"],
+      "js": ["content.js"],
+      "css": ["style.css"]
     }
-  }
-  
+  ]
+}
