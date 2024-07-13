@@ -1,14 +1,22 @@
 {
   "manifest_version": 3,
-  "name": "YouTube Music Current Time Tracker",
+  "name": "YouTube Music Tracker",
   "version": "1.0",
-  "description": "Track the current time of the song playing on YouTube Music and display it in a floating window",
-  "permissions": ["activeTab"],
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
   "content_scripts": [
     {
-      "matches": ["*://music.youtube.com/watch*"],
-      "js": ["content.js"],
-      "css": ["style.css"]
+      "matches": ["https://music.youtube.com/watch*"],
+      "js": ["content.js"]
     }
-  ]
+  ],
+  "action": {
+    "default_popup": "popup.html"
+    
+  }
 }
