@@ -16,4 +16,4 @@ function getCurrentTimeAndTitle() {
     }
 }
 
-setInterval(getCurrentTimeAndTitle, 100);
+setInterval(getCurrentTimeAndTitle, 1000);

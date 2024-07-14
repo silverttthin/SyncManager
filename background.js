@@ -1,24 +1,26 @@
 chrome.action.onClicked.addListener((tab) => {
-    chrome.scripting.executeScript({
-        target: {tabId: tab.id},
-        function: getCurrentTimeAndTitle
+    chrome.windows.getCurrent((currentWindow) => {
+        const width = 300;
+        const height = 100;
+        const left = currentWindow.left + currentWindow.width - width - 20;
+        const top = currentWindow.top + currentWindow.height - height - 20;
+
+        chrome.windows.create({
+            url: chrome.runtime.getURL('popup.html'),
+            type: 'popup',
+            width: width,
+            height: height,
+            left: left,
+            top: top
+        });
     });
 });
 
-function getCurrentTimeAndTitle() {
-    const titleElement = document.querySelector('ytmusic-player-bar .title');
-    const timeElement = document.querySelector('ytmusic-player-bar .time-info');
-
-    if (timeElement && titleElement) {
-        const title = titleElement.textContent;
-        const currentTime = timeElement.textContent;
-
-        chrome.runtime.sendMessage({
-            type: 'UPDATE_POPUP',
-            title: title,
-            currentTime: currentTime
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.type === 'UPDATE_POPUP') {
+        chrome.storage.local.set({
+            title: request.title,
+            currentTime: request.currentTime
         });
-    } else {
-        console.log('제목 또는 시간 요소를 찾을 수 없습니다.');
     }
-}
+});
