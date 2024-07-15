@@ -1,5 +1,6 @@
 let previousTitle = '';
 let previousArtist = '';
+let currentPlaybackTime = '';
 
 chrome.runtime.onStartup.addListener(() => {
     chrome.storage.local.clear(() => {
@@ -7,6 +8,7 @@ chrome.runtime.onStartup.addListener(() => {
     });
     previousTitle = '';
     previousArtist = '';
+    currentPlaybackTime = '';
 });
 
 chrome.runtime.onInstalled.addListener(() => {
@@ -15,6 +17,7 @@ chrome.runtime.onInstalled.addListener(() => {
     });
     previousTitle = '';
     previousArtist = '';
+    currentPlaybackTime = '';
 });
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -41,9 +44,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                     console.error('가사 데이터를 가져오는 중 오류 발생:', error);
                 });
         }
+    } else if (request.type === 'PLAYBACK_TIME') {
+        currentPlaybackTime = request.currentTime;
+        chrome.storage.local.set({ currentTime: currentPlaybackTime });
     } else if (request.type === 'GET_LYRICS') {
-        chrome.storage.local.get(['lyricsData', 'title', 'artist'], function(data) {
-            sendResponse({ lyrics: data.lyricsData, title: data.title, artist: data.artist });
+        chrome.storage.local.get(['lyricsData', 'title', 'artist', 'currentTime'], function(data) {
+            sendResponse({ lyrics: data.lyricsData, title: data.title, artist: data.artist, currentTime: data.currentTime });
         });
     }
 
