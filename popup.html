@@ -10,14 +10,22 @@
             background-color: rgba(0, 0, 0, 0.5);
             color: white;
         }
-        #time-display {
+        #time-display, #title-display, #artist-display {
             padding: 10px;
             border-radius: 5px;
+        }
+        #lyrics-display {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
         }
     </style>
 </head>
 <body>
-    <div id="time-display">정보를 가져오는 중...</div>
+    <div id="title-display">정보를 가져오는 중...</div>
+    <div id="artist-display">정보를 가져오는 중...</div>
+    <div id="lyrics-display">가사 데이터를 가져오는 중...</div>
     <script src="popup.js"></script>
 </body>
 </html>

@@ -5,18 +5,22 @@
   "permissions": [
     "activeTab",
     "scripting",
-    "storage"
+    "storage",
+    "webNavigation"
   ],
   "background": {
     "service_worker": "background.js"
   },
   "content_scripts": [
     {
-      "matches": ["https://music.youtube.com/watch*"],
+      "matches": ["*://music.youtube.com/watch*"],
       "js": ["content.js"]
     }
   ],
   "action": {
     "default_title": "YouTube Music Tracker"
-  }
+  },
+  
+  "host_permissions" : ["*://ec2-15-164-11-77.ap-northeast-2.compute.amazonaws.com/*"]
+
 }
