@@ -27,7 +27,7 @@ function getCurrentPlaybackTime() {
 
     if (timeElement) {
         const currentTime = timeElement.innerText.split(" / ")[0].trim();
-        console.log(`Current time: ${currentTime}`);
+        // console.log(`Current time: ${currentTime}`);
 
         chrome.runtime.sendMessage({
             type: 'PLAYBACK_TIME',
@@ -72,4 +72,4 @@ new MutationObserver(() => {
 }).observe(document, { subtree: true, childList: true });
 
 // 현재 재생 시각을 지속적으로 확인
-setInterval(getCurrentPlaybackTime, 100); // 1초 간격으로 재생 시각 확인
+setInterval(getCurrentPlaybackTime, 100);

@@ -7,24 +7,44 @@
         body {
             font-family: Arial, sans-serif;
             padding: 10px;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.8);
             color: white;
+            text-align: center;
         }
-        #time-display, #title-display, #artist-display {
-            padding: 10px;
-            border-radius: 5px;
+        .title-artist {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        #title-display {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        #artist-display {
+            font-size: 18px;
+            color: #ccc;
+        }
+        #time-display {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #aaa;
         }
         #lyrics-display {
-            margin-top: 10px;
-            padding: 10px;
-            border-radius: 5px;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
             background-color: rgba(255, 255, 255, 0.1);
+            font-size: 22px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div id="title-display">정보를 가져오는 중...</div>
-    <div id="artist-display">정보를 가져오는 중...</div>
+    <div class="title-artist">
+        <div id="title-display">정보를 가져오는 중...</div>
+        <div id="artist-display">정보를 가져오는 중...</div>
+    </div>
     <div id="time-display">재생 시각을 가져오는 중...</div>
     <div id="lyrics-display">가사 데이터를 가져오는 중...</div>
     <script src="popup.js"></script>

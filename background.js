@@ -25,7 +25,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         const title = request.title;
         const artist = request.artist;
 
-        console.log(`현재 데이터: ${title} ${artist}`);
+        console.log(`받아온 현재 데이터: ${title} ${artist}`);
         console.log(`이전 데이터: ${previousTitle} ${previousArtist}`);
 
         if (title !== previousTitle || artist !== previousArtist) {
@@ -37,18 +37,23 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             fetch(apiUrl)
                 .then(response => response.json())
                 .then(data => {
-                    console.log('서버에서 데이터를 받아왔습니다.');
+                    console.log('서버에서 데이터를 받아와 로컬에 가사, 제목, 아티스트를 저장합니다.');
                     chrome.storage.local.set({ lyricsData: data, title: title, artist: artist });
                 })
                 .catch(error => {
                     console.error('가사 데이터를 가져오는 중 오류 발생:', error);
                 });
         }
-    } else if (request.type === 'PLAYBACK_TIME') {
+
+    }
+
+    if (request.type === 'PLAYBACK_TIME') {
         currentPlaybackTime = request.currentTime;
         chrome.storage.local.set({ currentTime: currentPlaybackTime });
-    } else if (request.type === 'GET_LYRICS') {
-        chrome.storage.local.get(['lyricsData', 'title', 'artist', 'currentTime'], function(data) {
+    }
+
+    if (request.type === 'GET_LYRICS') {
+        chrome.storage.local.get(['lyricsData', 'title', 'artist', 'currentTime'], function (data) {
             sendResponse({ lyrics: data.lyricsData, title: data.title, artist: data.artist, currentTime: data.currentTime });
         });
     }
