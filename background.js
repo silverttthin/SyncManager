@@ -6,18 +6,12 @@ chrome.runtime.onStartup.addListener(() => {
     chrome.storage.local.clear(() => {
         console.log('로컬 스토리지 비움.');
     });
-    previousTitle = '';
-    previousArtist = '';
-    currentPlaybackTime = '';
 });
 
 chrome.runtime.onInstalled.addListener(() => {
     chrome.storage.local.clear(() => {
         console.log('로컬 스토리지 비움.');
     });
-    previousTitle = '';
-    previousArtist = '';
-    currentPlaybackTime = '';
 });
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -25,24 +19,24 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         const title = request.title;
         const artist = request.artist;
 
-        console.log(`받아온 현재 데이터: ${title} ${artist}`);
-        console.log(`이전 데이터: ${previousTitle} ${previousArtist}`);
-
         if (title !== previousTitle || artist !== previousArtist) {
             previousTitle = title;
             previousArtist = artist;
 
             let apiUrl = `http://ec2-15-164-11-77.ap-northeast-2.compute.amazonaws.com/lyrics?title=${encodeURIComponent(title)}&artist=${encodeURIComponent(artist)}`;
+            
+            chrome.storage.local.set({ lyricsData: "로딩 중..", title: title, artist: artist });
 
             fetch(apiUrl)
                 .then(response => response.json())
                 .then(data => {
-                    console.log('서버에서 데이터를 받아와 로컬에 가사, 제목, 아티스트를 저장합니다.');
-                    chrome.storage.local.set({ lyricsData: data, title: title, artist: artist });
+                    if(data.detail == "Song not found"){
+                        chrome.storage.local.set({ lyricsData: "😭가사 데이터가 없습니다😭"});
+                    }
+                    else{
+                        chrome.storage.local.set({ lyricsData: data});
+                    }
                 })
-                .catch(error => {
-                    console.error('가사 데이터를 가져오는 중 오류 발생:', error);
-                });
         }
 
     }
@@ -63,8 +57,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 chrome.action.onClicked.addListener((tab) => {
     chrome.windows.getCurrent((currentWindow) => {
-        const width = 300;
-        const height = 400;
+        const width = 350;
+        const height = 300;
         const left = currentWindow.left + currentWindow.width - width - 20;
         const top = currentWindow.top + currentWindow.height - height - 20;
 

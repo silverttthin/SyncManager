@@ -13,6 +13,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 titleDisplayDiv.textContent = response.title || '제목 정보를 가져오는 중...';
                 artistDisplayDiv.textContent = response.artist || '가수 정보를 가져오는 중...';
                 lyricsData = response.lyrics;
+
+                // 가사 데이터가 없는 경우 처리
+                if (lyricsData === "😭가사 데이터가 없습니다😭") {
+                    lyricsDisplayDiv.textContent = lyricsData;
+                }
             } else {
                 titleDisplayDiv.textContent = '제목 정보를 가져오는 중...';
                 artistDisplayDiv.textContent = '가수 정보를 가져오는 중...';
@@ -22,7 +27,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (response.currentTime) {
                 const currentTime = response.currentTime;
                 timeDisplayDiv.textContent = currentTime;
-                updateLyricsDisplay(currentTime);
+
+                // 가사 데이터가 있는 경우에만 가사 업데이트
+                if (lyricsData !== "😭가사 데이터가 없습니다😭") {
+                    updateLyricsDisplay(currentTime);
+                }
             }
         });
     }
@@ -41,9 +50,15 @@ document.addEventListener('DOMContentLoaded', function() {
             if (currentSeconds >= lyricStartSeconds && currentSeconds < nextLyricStartSeconds) {
                 if (currentLyricIndex !== i) {
                     currentLyricIndex = i;
-                    lyricsDisplayDiv.textContent = `${lyricsData[i].original}`;
+                    // Original 가사와 번역 가사를 함께 표시
+                    lyricsDisplayDiv.innerHTML = `<div>${lyricsData[i].original}</div>
+                                                <div style="font-size: 18px; color: #ccc; margin-top: 4px;">${lyricsData[i].translated}</div>`;
                 }
                 break;
+            } 
+
+            else if (currentSeconds < lyricStartSeconds){
+                lyricsDisplayDiv.textContent = "🎵~";
             }
         }
     }
