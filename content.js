@@ -17,7 +17,7 @@ function getCurrentTrackInfo() {
 
         return true;
     } else {
-        console.log('제목 또는 아티스트 요소를 찾을 수 없습니다.');
+        console.log('[SyncManager]: 제목 또는 아티스트 요소를 찾을 수 없습니다.');
         return false;
     }
 }
@@ -33,7 +33,7 @@ function getCurrentPlaybackTime() {
             currentTime: currentTime
         });
     } else {
-        console.log('재생 시각 요소를 찾을 수 없습니다.');
+        console.log('[SyncManager]: 재생 시각 요소를 찾을 수 없습니다.');
     }
 }
 

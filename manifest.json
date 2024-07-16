@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "YouTube Music Tracker",
+  "name": "SyncManager",
   "version": "1.0",
   "permissions": [
     "activeTab",
@@ -22,7 +22,7 @@
     }
   ],
   "action": {
-    "default_title": "YouTube Music Tracker"
+    "default_title": "SyncManager"
   },
   
   "host_permissions" : ["*://ec2-15-164-11-77.ap-northeast-2.compute.amazonaws.com/*"]

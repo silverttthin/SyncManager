@@ -4,13 +4,11 @@ let currentPlaybackTime = '';
 
 chrome.runtime.onStartup.addListener(() => {
     chrome.storage.local.clear(() => {
-        console.log('로컬 스토리지 비움.');
     });
 });
 
 chrome.runtime.onInstalled.addListener(() => {
     chrome.storage.local.clear(() => {
-        console.log('로컬 스토리지 비움.');
     });
 });
 
