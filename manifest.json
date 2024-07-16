@@ -8,6 +8,7 @@
     "storage",
     "webNavigation"
   ],
+  "description": "Youtube Music, Spotify에서 노래를 들을 때 싱크에 맞는 가사를 플로팅해줍니다.\n저희 커뮤니티에 LRC파일을 업로드해 가사 데이터를 더욱 풍성하게 만들어주세요.",
   "background": {
     "service_worker": "background.js"
   },
@@ -25,6 +26,12 @@
     "default_title": "SyncManager"
   },
   
-  "host_permissions" : ["*://ec2-15-164-11-77.ap-northeast-2.compute.amazonaws.com/*"]
-
+  "host_permissions" : ["*://ec2-15-164-11-77.ap-northeast-2.compute.amazonaws.com/*"],
+  "icons" : {
+    "16" : "icons/icon16.png",
+    "19" : "icons/icon19.png",
+    "32" : "icons/icon32.png",
+    "48" : "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
 }

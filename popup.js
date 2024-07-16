@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } 
 
             else if (currentSeconds < lyricStartSeconds){
-                lyricsDisplayDiv.textContent = "🎵~";
+                lyricsDisplayDiv.textContent = "♬~";
             }
         }
     }
