@@ -66,6 +66,7 @@ FastAPI - 가사 DB 및 AI 번역 개발 용도
 추천 페이지
 
 <img width="500" alt="Untitled (5)" src="https://github.com/user-attachments/assets/847c4bc6-2dd1-40a7-bef7-efca91e7ead4">
+
 <img width="500" alt="Untitled (6)" src="https://github.com/user-attachments/assets/1a60ec42-655f-4106-b0cc-bd2bfcb6e345">
 
 DB에 저장된 노래들의 가사들을 볼 수 있습니다.
