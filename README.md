@@ -1,4 +1,4 @@
-<p align="center" style="color:gray">
+<p style="color:gray">
   <img style="margin:50px 0 10px 0" src=https://github.com/user-attachments/assets/d4bbe2f2-977e-435a-b214-1cd37054ea54 width=200 />
   
 화살표 두개가 맞물리는 이미지인 싱크를 S에 적용한 SyncManager 프로젝트 이미지입니다.
@@ -67,6 +67,8 @@ FastAPI - 가사 DB 및 AI 번역 개발 용도
 
 <img width="500" alt="Untitled (5)" src="https://github.com/user-attachments/assets/847c4bc6-2dd1-40a7-bef7-efca91e7ead4">
 
+
+<p></p>
 <img width="500" alt="Untitled (6)" src="https://github.com/user-attachments/assets/1a60ec42-655f-4106-b0cc-bd2bfcb6e345">
 
 DB에 저장된 노래들의 가사들을 볼 수 있습니다.
